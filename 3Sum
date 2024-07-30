@@ -1,0 +1,27 @@
+class Solution {
+public:
+
+    vector<vector<int>> findsum(vector<int>& nums) {
+      set<vector<int>> st;
+        for (int i = 0; i < nums.size(); i++) {
+            set<int> newset;
+            for (int j = i + 1; j < nums.size() - 1; j++) {
+                int k = -(nums[i] + nums[j]);
+                if (newset.find(k) == newset.end()) {
+                    vector<int> level = {nums[i], nums[j], k};
+                    sort(level.begin(), level.end());
+                    st.insert(level);
+                }
+                newset.insert(nums[j]);
+            }
+        }
+    vector<vector<int>> ans(st.begin(), st.end());
+    return ans;
+}
+
+vector<vector<int>> threeSum(vector<int>& nums) {
+    vector<vector<int>> res = findsum(nums);
+    return res;
+}
+
+};
